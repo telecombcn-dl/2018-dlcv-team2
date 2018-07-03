@@ -32,18 +32,9 @@ def define_G(input_nc, output_nc, ngf, norm='batch', use_dropout=False, gpu_ids=
 
     if use_gpu:
         assert(torch.cuda.is_available())
-
-    #netG = ResnetGenerator(input_nc, output_nc, ngf, norm_layer=norm_layer, use_dropout=use_dropout, n_blocks=9, gpu_ids=gpu_ids)
-
-    #if len(gpu_ids) > 0:
-    #    netG.cuda(gpu_ids[0])
-    #netG.apply(weights_init)
-    #state_dictG = torch.load("checkpoint/facades/netG_model_epoch_190.pth")
+        
     netG = torch.load("checkpoint/facades/netG_model_epoch_200.pth")
-    fname = "state_dictG.txt"
-    with open(fname, "a") as f:
-        f.write(str(netG))
-    #netG.load_state_dict(state_dictG)
+
     return netG
 
 
@@ -55,14 +46,8 @@ def define_D(input_nc, ndf, norm='batch', use_sigmoid=False, gpu_ids=[]):
     if use_gpu:
         assert(torch.cuda.is_available())
 
-    #netD = NLayerDiscriminator(input_nc, ndf, n_layers=3, norm_layer=norm_layer, use_sigmoid=use_sigmoid, gpu_ids=gpu_ids)
-
-    #if use_gpu:
-    #    netD.cuda(gpu_ids[0])
-    #netD.apply(weights_init)
-    #state_dictD = torch.load("checkpoint/facades/netD_model_epoch_190.pth")
     netD = torch.load("checkpoint/facades/netD_model_epoch_200.pth")
-    #netD = netD.load_state_dict(state_dictD)
+    
     return netD
 
 
